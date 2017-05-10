@@ -1,4 +1,5 @@
 import config from 'config'
+import crypto from 'crypto'
 
 import { controller, bot } from '../bot'
 
@@ -22,4 +23,19 @@ export function subscribe (req, res) {
 export function receivedUpdate (req, res) {
   controller.handleWebhookPayload(req, res, bot)
   res.sendStatus(200)
+}
+
+function getHash (buf) {
+  return crypto.createHmac('sha1', config.get('facebook.appSecret'))
+    .update(buf)
+    .digest('hex')
+}
+
+export function verify (req, res, buf) {
+  const signature = req.headers['x-hub-signature']
+  const [method, hash] = signature.split('=')
+
+  if (!signature || hash !== getHash(buf)) {
+    throw new Error('Invalid signature')
+  }
 }
