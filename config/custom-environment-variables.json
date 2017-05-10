@@ -4,7 +4,8 @@
   },
   "facebook": {
     "verifyToken": "FACEBOOK_VERIFY_TOKEN",
-    "accessToken": "FACEBOOK_ACCESS_TOKEN"
+    "accessToken": "FACEBOOK_ACCESS_TOKEN",
+    "appSecret": "FACEBOOK_APP_SECRET"
   },
   "logs": {
     "level": "LOG_LEVEL"
