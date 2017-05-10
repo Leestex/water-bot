@@ -1,5 +1,8 @@
 {
   "server": {
     "port": "PORT"
+  },
+  "facebook": {
+    "verifyToken": "FACEBOOK_VERIFY_TOKEN"
   }
 }
