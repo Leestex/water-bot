@@ -3,6 +3,10 @@
     "port": 1337
   },
   "facebook": {
-    "verifyToken": ""
+    "verifyToken": "",
+    "accessToken": ""
+  },
+  "logs": {
+    "level": "info"
   }
 }
