@@ -14,7 +14,7 @@ export async function start (reply, profile) {
   ]
 
   await reply({ text: tpl.HELLO({ profile }) })
-  await reply({ text: tpl.FEATURES(), quick_replies: quickReplies })
+  await reply({ text: tpl.FEATURES, quick_replies: quickReplies })
 }
 
 export async function quickReply (reply, query, payload) {
@@ -22,7 +22,7 @@ export async function quickReply (reply, query, payload) {
 
   switch (action) {
     case 'START': {
-      await reply({ text: tpl.BEFORE_BEGIN() })
+      await reply({ text: tpl.BEFORE_BEGIN })
       await amount.request(reply)
 
       break
