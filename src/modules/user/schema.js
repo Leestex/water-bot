@@ -11,4 +11,10 @@ export default Schema({
     required: true,
     trim: true,
   },
+  settings: {
+    water: {
+      amount: String,
+      frequency: String,
+    },
+  },
 })
