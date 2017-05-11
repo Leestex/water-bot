@@ -19,20 +19,16 @@ const quickReplies = [
 ]
 
 export function request (req) {
-  const { reply, data: amount } = req
-
-  if (amount === '6') {
-    return reply({ text: tpl.SET_DAYLY_REMINDER, quick_replies: quickReplies.slice(-1) })
+  if (req.data === '6') {
+    return req.reply({ text: tpl.SET_DAYLY_REMINDER, quick_replies: quickReplies.slice(-1) })
   }
 
-  return reply({ text: tpl.CHOOSE_FREQUENCY, quick_replies: quickReplies })
+  return req.reply({ text: tpl.CHOOSE_FREQUENCY, quick_replies: quickReplies })
 }
 
 export function set (req) {
-  const { reply, user, data: frequency } = req
+  req.user.set('settings.water.frequency', req.data)
+  req.user.save()
 
-  user.set('settings.water.frequency', frequency)
-  user.save()
-
-  return reply({ text: tpl.NOTED })
+  return req.reply({ text: tpl.NOTED })
 }

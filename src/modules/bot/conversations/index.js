@@ -5,8 +5,6 @@ import * as frequency from './frequency'
 import log from '../../logger'
 
 export async function start (req) {
-  const { reply, user } = req
-
   const quickReplies = [
     {
       content_type: 'text',
@@ -15,16 +13,14 @@ export async function start (req) {
     },
   ]
 
-  await reply({ text: tpl.HELLO({ user }) })
-  await reply({ text: tpl.FEATURES, quick_replies: quickReplies })
+  await req.reply({ text: tpl.HELLO({ user: req.user }) })
+  await req.reply({ text: tpl.FEATURES, quick_replies: quickReplies })
 }
 
 export async function quickReply (req) {
-  const { reply, query, action } = req
-
-  switch (action) {
+  switch (req.action) {
     case 'START': {
-      await reply({ text: tpl.BEFORE_BEGIN })
+      await req.reply({ text: tpl.BEFORE_BEGIN })
       await amount.request(req)
 
       break
@@ -44,13 +40,11 @@ export async function quickReply (req) {
     }
 
     default: {
-      log.warn(`Unknown query: ${query}`)
+      log.warn(`Unknown query: ${req.query}`)
     }
   }
 }
 
 export async function defaultMessage (req) {
-  const { reply, user } = req
-
-  return reply({ text: tpl.UNKNOWN_COMMAND({ user }) })
+  return req.reply({ text: tpl.UNKNOWN_COMMAND({ user: req.user }) })
 }

@@ -26,36 +26,32 @@ const quickReplies = [
 ]
 
 export function request (req) {
-  const { reply } = req
-
-  return reply({ text: tpl.HOW_MANY_CUPS, quick_replies: quickReplies })
+  return req.reply({ text: tpl.HOW_MANY_CUPS, quick_replies: quickReplies })
 }
 
 export function set (req) {
-  const { reply, user, data: amount } = req
+  req.user.set('settings.water.amount', req.data)
+  req.user.save()
 
-  user.set('settings.water.amount', amount)
-  user.save()
-
-  switch (amount) {
+  switch (req.data) {
     case 'NA':
     case '1-2': {
       // TODO: send OOPS image
-      return reply({ text: tpl.RECOMMENDED })
+      return req.reply({ text: tpl.RECOMMENDED })
     }
 
     case '3-5': {
       // TODO: send COOL image
-      return reply({ text: tpl.RECOMMENDED })
+      return req.reply({ text: tpl.RECOMMENDED })
     }
 
     case '6': {
       // TODO: send champ image
-      return reply({ text: tpl.YOU_ARE_CHAMP })
+      return req.reply({ text: tpl.YOU_ARE_CHAMP })
     }
 
     default: {
-      log.warn(`Unknown amount: ${amount}`)
+      log.warn(`Unknown amount: ${req.data}`)
       return false
     }
   }
