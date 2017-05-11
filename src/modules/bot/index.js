@@ -1,10 +1,26 @@
-import Botkit from 'botkit'
+import Bot from 'messenger-bot'
 import config from 'config'
 
-export const controller = Botkit.facebookbot({
-  debug: true,
-  verify_token: config.get('facebook.verifyToken'),
-  access_token: config.get('facebook.accessToken'),
+import { start, quickReply, defaultMessage } from './conversations'
+
+const bot = new Bot({
+  verify: config.get('facebook.verifyToken'),
+  token: config.get('facebook.accessToken'),
+  app_secret: config.get('facebook.appSecret'),
 })
 
-export const bot = controller.spawn({})
+bot.on('message', async (payload, reply) => {
+  const profile = await bot.getProfile(payload.sender.id)
+
+  if (payload.message.text === 'Start') {
+    return start(reply, profile)
+  }
+
+  if (payload.message.quick_reply) {
+    return quickReply(reply, payload.message.quick_reply.payload, payload)
+  }
+
+  return defaultMessage(reply, profile)
+})
+
+export default bot

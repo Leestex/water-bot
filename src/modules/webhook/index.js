@@ -1,7 +1,7 @@
 import config from 'config'
 import crypto from 'crypto'
 
-import { controller, bot } from '../bot'
+import bot from '../bot'
 
 export function validate (req, res, next) {
   if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token']) {
@@ -21,7 +21,7 @@ export function subscribe (req, res) {
 }
 
 export function receivedUpdate (req, res) {
-  controller.handleWebhookPayload(req, res, bot)
+  bot._handleMessage(req.body)
   res.sendStatus(200)
 }
 
