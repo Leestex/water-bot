@@ -1,6 +1,7 @@
 {
   "server": {
-    "port": 1337
+    "port": 1337,
+    "publicURL": "http://localhost:1337"
   },
   "database": {
     "mongodb": {

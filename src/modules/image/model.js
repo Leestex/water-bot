@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
+import config from 'config'
 
 import schema from './schema'
 
 const IMAGES = {
-  oops: '',
-  cool: '',
-  champ: '',
+  oops: `${config.get('server.publicURL')}/static/images/oops.jpg`,
+  cool: `${config.get('server.publicURL')}/static/images/cool.jpg`,
+  champ: `${config.get('server.publicURL')}/static/images/champ.jpg`,
 }
 
 class Image {

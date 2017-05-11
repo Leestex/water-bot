@@ -1,6 +1,7 @@
 {
   "server": {
-    "port": "PORT"
+    "port": "PORT",
+    "publicURL": "PUBLIC_URL"
   },
   "database": {
     "mongodb": {
