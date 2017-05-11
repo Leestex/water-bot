@@ -14,6 +14,9 @@
     "clean": "rm -rf dist/",
     "heroku-postbuild": "npm run clean && npm run build"
   },
+  "engines": {
+    "node": "7.9.0"
+  },
   "repository": "https://github.com/Leestex/water-bot.git",
   "author": "Nazar Kuzmenko <nazar.kuzmenko@gmail.com>",
   "license": "MIT",
