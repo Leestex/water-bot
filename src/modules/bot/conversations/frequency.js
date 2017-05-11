@@ -1,4 +1,4 @@
-import { CHOOSE_FREQUENCY, NOTED } from '../messages'
+import { CHOOSE_FREQUENCY, SET_DAYLY_REMINDER, NOTED } from '../messages'
 
 const quickReplies = [
   {
@@ -19,6 +19,10 @@ const quickReplies = [
 ]
 
 export function request (reply, amount) {
+  if (amount === '6') {
+    return reply({ text: SET_DAYLY_REMINDER(), quick_replies: quickReplies.slice(-1) })
+  }
+
   return reply({ text: CHOOSE_FREQUENCY(), quick_replies: quickReplies })
 }
 
