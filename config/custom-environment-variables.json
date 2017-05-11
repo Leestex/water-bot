@@ -2,6 +2,11 @@
   "server": {
     "port": "PORT"
   },
+  "database": {
+    "mongodb": {
+      "uri": "DB_MONGODB_URI"
+    }
+  },
   "facebook": {
     "verifyToken": "FACEBOOK_VERIFY_TOKEN",
     "accessToken": "FACEBOOK_ACCESS_TOKEN",

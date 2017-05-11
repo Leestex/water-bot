@@ -2,6 +2,11 @@
   "server": {
     "port": 1337
   },
+  "database": {
+    "mongodb": {
+      "uri": "localhost/waterbot"
+    }
+  },
   "facebook": {
     "verifyToken": "",
     "accessToken": "",
