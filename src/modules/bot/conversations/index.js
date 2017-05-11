@@ -22,23 +22,17 @@ export async function quickReply (req) {
     case 'START': {
       await req.reply({ text: tpl.BEFORE_BEGIN })
       await amount.request(req)
-
       break
     }
-
     case 'AMOUNT': {
       await amount.set(req)
       await frequency.request(req)
-
       break
     }
-
     case 'FREQUENCY': {
       await frequency.set(req)
-
       break
     }
-
     default: {
       log.warn(`Unknown query: ${req.query}`)
     }

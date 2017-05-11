@@ -39,17 +39,14 @@ export function set (req) {
       // TODO: send OOPS image
       return req.reply({ text: tpl.RECOMMENDED })
     }
-
     case '3-5': {
       // TODO: send COOL image
       return req.reply({ text: tpl.RECOMMENDED })
     }
-
     case '6': {
       // TODO: send champ image
       return req.reply({ text: tpl.YOU_ARE_CHAMP })
     }
-
     default: {
       log.warn(`Unknown amount: ${req.data}`)
       return false
