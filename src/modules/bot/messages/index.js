@@ -1,6 +1,6 @@
 import { template as tpl } from 'lodash'
 
-export const HELLO = tpl('Hi <%- profile.first_name %>! I am your personal water trainer 🙂')
+export const HELLO = tpl('Hi <%- user.name %>! I am your personal water trainer 🙂')
 export const FEATURES = [
   '☑  Daily water reminders',
   '☑  Personalized AI recommendations',
@@ -16,10 +16,10 @@ export const CHOOSE_FREQUENCY = 'Choose the frequency for water break reminders'
 export const SET_DAYLY_REMINDER = 'Set a daily reminder to keep track with your good work'
 export const NOTED = 'Noted 🙂'
 export const NOTED_TRY_NOW = 'Noted 🙂 Let\'s give it a try now'
-export const WELL_DONE = tpl('Well done <%- profile.first_name %>! Keep it up!')
+export const WELL_DONE = tpl('Well done <%- user.name %>! Keep it up!')
 export const MENU_NOTICE = 'You can always get to the menu by asking for "Menu" 🙂'
 
-export const UNKNOWN_COMMAND = tpl('Sorry <%- profile.first_name %>. I am a young WaterBot and still learning. Type "Start" to show the start over')
+export const UNKNOWN_COMMAND = tpl('Sorry <%- user.name %>. I am a young WaterBot and still learning. Type "Start" to show the start over')
 
 export const FREQUENCY_1 = 'Once a day'
 export const FREQUENCY_2 = 'Twice a day'
