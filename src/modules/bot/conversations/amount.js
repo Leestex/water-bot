@@ -25,11 +25,18 @@ const quickReplies = [
   },
 ]
 
-export function request (reply) {
+export function request (req) {
+  const { reply } = req
+
   return reply({ text: tpl.HOW_MANY_CUPS, quick_replies: quickReplies })
 }
 
-export function set (reply, amount) {
+export function set (req) {
+  const { reply, user, data: amount } = req
+
+  user.set('settings.water.amount', amount)
+  user.save()
+
   switch (amount) {
     case 'NA':
     case '1-2': {

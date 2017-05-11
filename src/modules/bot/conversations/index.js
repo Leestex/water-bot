@@ -4,7 +4,9 @@ import * as frequency from './frequency'
 
 import log from '../../logger'
 
-export async function start (reply, user) {
+export async function start (req) {
+  const { reply, user } = req
+
   const quickReplies = [
     {
       content_type: 'text',
@@ -17,26 +19,26 @@ export async function start (reply, user) {
   await reply({ text: tpl.FEATURES, quick_replies: quickReplies })
 }
 
-export async function quickReply (reply, query, payload) {
-  const [action, data] = query.split('_')
+export async function quickReply (req) {
+  const { reply, query, action } = req
 
   switch (action) {
     case 'START': {
       await reply({ text: tpl.BEFORE_BEGIN })
-      await amount.request(reply)
+      await amount.request(req)
 
       break
     }
 
     case 'AMOUNT': {
-      await amount.set(reply, data)
-      await frequency.request(reply, data)
+      await amount.set(req)
+      await frequency.request(req)
 
       break
     }
 
     case 'FREQUENCY': {
-      await frequency.set(reply, data)
+      await frequency.set(req)
 
       break
     }
@@ -47,6 +49,8 @@ export async function quickReply (reply, query, payload) {
   }
 }
 
-export async function defaultMessage (reply, user) {
+export async function defaultMessage (req) {
+  const { reply, user } = req
+
   return reply({ text: tpl.UNKNOWN_COMMAND({ user }) })
 }

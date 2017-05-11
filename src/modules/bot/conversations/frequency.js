@@ -18,7 +18,9 @@ const quickReplies = [
   },
 ]
 
-export function request (reply, amount) {
+export function request (req) {
+  const { reply, data: amount } = req
+
   if (amount === '6') {
     return reply({ text: tpl.SET_DAYLY_REMINDER, quick_replies: quickReplies.slice(-1) })
   }
@@ -26,6 +28,11 @@ export function request (reply, amount) {
   return reply({ text: tpl.CHOOSE_FREQUENCY, quick_replies: quickReplies })
 }
 
-export function set (reply, frequency) {
+export function set (req) {
+  const { reply, user, data: frequency } = req
+
+  user.set('settings.water.frequency', frequency)
+  user.save()
+
   return reply({ text: tpl.NOTED })
 }
