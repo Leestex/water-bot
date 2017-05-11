@@ -1,5 +1,6 @@
 import * as tpl from '../messages'
 
+import { Image } from '../../image'
 import log from '../../logger'
 
 const quickReplies = [
@@ -29,22 +30,22 @@ export function request (req) {
   return req.reply({ text: tpl.HOW_MANY_CUPS, quick_replies: quickReplies })
 }
 
-export function set (req) {
+export async function set (req) {
   req.user.set('settings.water.amount', req.data)
   req.user.save()
 
   switch (req.data) {
     case 'NA':
     case '1-2': {
-      // TODO: send OOPS image
+      await Image.send(req.reply, 'oops')
       return req.reply({ text: tpl.RECOMMENDED })
     }
     case '3-5': {
-      // TODO: send COOL image
+      await Image.send(req.reply, 'cool')
       return req.reply({ text: tpl.RECOMMENDED })
     }
     case '6': {
-      // TODO: send champ image
+      await Image.send(req.reply, 'champ')
       return req.reply({ text: tpl.YOU_ARE_CHAMP })
     }
     default: {

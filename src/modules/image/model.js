@@ -12,7 +12,9 @@ const IMAGES = {
 class Image {
 
   static async send (reply, name) {
-    if (!IMAGES[name]) {
+    const originalURL = IMAGES[name]
+
+    if (!originalURL) {
       return false
     }
 
@@ -33,19 +35,17 @@ class Image {
       attachment: {
         type: 'image',
         payload: {
-          url: IMAGES[name],
+          url: originalURL,
           is_reusable: true,
         },
       },
     })
 
-    console.log('IMAGE', response)
-
     if (image) {
       image.set('fbid', response.attachment_id)
       image.save()
     } else {
-      this.create({ name, fbid: response.attachment_id })
+      this.create({ name, originalURL, fbid: response.attachment_id })
     }
 
     return response

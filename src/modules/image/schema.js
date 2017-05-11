@@ -2,7 +2,7 @@ import { Schema } from 'mongoose'
 
 export default Schema({
   fbid: {
-    type: Number,
+    type: String,
     unique: true,
   },
   name: {
