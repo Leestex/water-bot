@@ -1,8 +1,8 @@
 import Bot from 'messenger-bot'
 import config from 'config'
 
-import { User } from '../user'
 import { start, quickReply, defaultMessage } from './conversations'
+import { getRequestFromPayload } from './request'
 
 const bot = new Bot({
   verify: config.get('facebook.verifyToken'),
@@ -10,31 +10,8 @@ const bot = new Bot({
   app_secret: config.get('facebook.appSecret'),
 })
 
-function parseQuery (query) {
-  const [action, data] = query.split('_')
-
-  return { action, data }
-}
-
-async function getRequestFromPayload (payload, reply) {
-  const request = {}
-
-  const user = await User.findOneOrCreate(payload.sender.id, bot)
-
-  Object.assign(request, { user, payload, reply })
-
-  if (payload.message.quick_reply) {
-    request.query = payload.message.quick_reply.payload
-    Object.assign(request, parseQuery(request.query))
-  }
-
-  console.log('request', request)
-
-  return request
-}
-
 bot.on('message', async (payload, reply) => {
-  const request = await getRequestFromPayload(payload, reply)
+  const request = await getRequestFromPayload(payload, reply, bot)
 
   if (payload.message.text === 'Start') {
     return start(request)
