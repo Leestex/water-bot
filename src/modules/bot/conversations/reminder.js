@@ -1,5 +1,6 @@
 import * as tpl from '../messages'
 import { Image } from '../../image'
+import bot from '../index'
 
 const notificationQuickReplies = [
   {
@@ -47,10 +48,10 @@ export async function accepted (req) {
   })
 }
 
-export async function remind (req) {
-  await Image.send(req.reply, 'water')
+export async function remind (user) {
+  await Image.send(bot.sendMessage.bind(bot, user.fbid), 'water')
 
-  return req.reply({
+  return bot.sendMessage(user.fbid, {
     text: tpl.WATER_TIME,
     quick_replies: notificationQuickReplies,
   })

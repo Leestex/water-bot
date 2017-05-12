@@ -13,7 +13,7 @@ export async function getRequestFromPayload (payload, reply, bot) {
 
   Object.assign(request, { user, payload, reply })
 
-  if (payload.message.quick_reply) {
+  if (payload.message && payload.message.quick_reply) {
     request.query = payload.message.quick_reply.payload
     Object.assign(request, parseQuery(request.query))
   }

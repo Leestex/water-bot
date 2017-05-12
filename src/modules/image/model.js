@@ -7,6 +7,7 @@ const IMAGES = {
   oops: `${config.get('server.publicURL')}/static/images/oops.jpg`,
   cool: `${config.get('server.publicURL')}/static/images/cool.jpg`,
   champ: `${config.get('server.publicURL')}/static/images/champ.jpg`,
+  water: `${config.get('server.publicURL')}/static/images/water.gif`,
 }
 
 class Image {

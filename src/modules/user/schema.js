@@ -11,10 +11,14 @@ export default Schema({
     required: true,
     trim: true,
   },
+  timezone: {
+    type: Number,
+    required: true,
+  },
   settings: {
     water: {
       amount: String,
-      frequency: String,
+      frequency: Number,
     },
   },
 })

@@ -27,7 +27,7 @@ export function request (req) {
 }
 
 export function set (req) {
-  req.user.set('settings.water.frequency', req.data)
+  req.user.set('settings.water.frequency', req.data, Number)
   req.user.save()
 
   return req.reply({ text: tpl.NOTED })

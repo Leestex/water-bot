@@ -9,7 +9,7 @@ class User {
 
     if (!user) {
       const profile = await bot.getProfile(fbid)
-      user = await this.create({ fbid, name: profile.first_name })
+      user = await this.create({ fbid, name: profile.first_name, timezone: profile.timezone })
     }
 
     return user

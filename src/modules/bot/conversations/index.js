@@ -14,29 +14,29 @@ export async function start (req) {
   ]
 
   await req.reply({ text: tpl.HELLO({ user: req.user }) })
-  await req.reply({ text: tpl.FEATURES, quick_replies: quickReplies })
+
+  return req.reply({ text: tpl.FEATURES, quick_replies: quickReplies })
 }
 
 export async function quickReply (req) {
   switch (req.action) {
     case 'START': {
       await req.reply({ text: tpl.BEFORE_BEGIN })
-      await amount.request(req)
-      break
+      return amount.request(req)
     }
     case 'AMOUNT': {
       await amount.set(req)
-      await frequency.request(req)
-      break
+      return frequency.request(req)
     }
     case 'FREQUENCY': {
-      await frequency.set(req)
-      break
+      return frequency.set(req)
     }
     default: {
       log.warn(`Unknown query: ${req.query}`)
     }
   }
+
+  return false
 }
 
 export async function defaultMessage (req) {
