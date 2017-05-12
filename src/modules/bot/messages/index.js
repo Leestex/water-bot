@@ -13,6 +13,7 @@ export const HOW_MANY_CUPS = 'How many cups of water do you drink a day?'
 export const YOU_ARE_CHAMP = 'Your\'e a real champ! 8 cups is the recommended amount.'
 export const RECOMMENDED = 'The recommended amount of water per day is eight 8-ounce glasses, equals to about 2 liters, or half a gallon.'
 export const CHOOSE_FREQUENCY = 'Choose the frequency for water break reminders'
+export const CHANGE_FREQUENCY = 'Changing frequency is super easy. Select new frequency:'
 export const SET_DAYLY_REMINDER = 'Set a daily reminder to keep track with your good work'
 export const NOTED = 'Noted 🙂'
 export const NOTED_TRY_NOW = 'Noted 🙂 Let\'s give it a try now'
@@ -21,6 +22,7 @@ export const MENU_NOTICE = 'You can always get to the menu by asking for "Menu" 
 
 export const UNKNOWN_COMMAND = tpl('Sorry <%- user.name %>. I am a young WaterBot and still learning. Type "Start" to show the start over')
 
+export const FREQUENCY_0 = 'Stop reminders'
 export const FREQUENCY_1 = 'Once a day'
 export const FREQUENCY_2 = 'Twice a day'
 export const FREQUENCY_3 = '3 times a day'

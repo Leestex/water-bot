@@ -16,14 +16,25 @@ const quickReplies = [
     title: tpl.FREQUENCY_1,
     payload: 'FREQUENCY_1',
   },
+  {
+    content_type: 'text',
+    title: tpl.FREQUENCY_0,
+    payload: 'FREQUENCY_0',
+  },
 ]
 
 export function request (req) {
   if (req.data === '6') {
-    return req.reply({ text: tpl.SET_DAYLY_REMINDER, quick_replies: quickReplies.slice(-1) })
+    return req.reply({
+      text: tpl.SET_DAYLY_REMINDER,
+      quick_replies: quickReplies.slice(-2),
+    })
   }
 
-  return req.reply({ text: tpl.CHOOSE_FREQUENCY, quick_replies: quickReplies })
+  return req.reply({
+    text: tpl.CHOOSE_FREQUENCY,
+    quick_replies: quickReplies.slice(-1),
+  })
 }
 
 export function set (req) {
@@ -31,4 +42,11 @@ export function set (req) {
   req.user.save()
 
   return req.reply({ text: tpl.NOTED })
+}
+
+export function change (req) {
+  return req.reply({
+    text: tpl.CHANGE_FREQUENCY,
+    quick_replies: quickReplies,
+  })
 }

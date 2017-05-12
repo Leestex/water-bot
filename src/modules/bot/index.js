@@ -4,6 +4,7 @@ import config from 'config'
 import { start, quickReply, defaultMessage } from './conversations'
 import { getRequestFromPayload } from './request'
 import { threadState, callToActions } from './menu'
+import { change } from './conversations/frequency'
 
 import agenda from '../scheduler'
 import log from '../logger'
@@ -33,11 +34,17 @@ bot.on('message', async (payload, reply) => {
 bot.on('postback', async (payload, reply) => {
   const request = await getRequestFromPayload(payload, reply, bot)
 
-  if (payload.postback.payload === 'START') {
-    return start(request)
+  switch (payload.postback.payload) {
+    case 'START': {
+      return start(request)
+    }
+    case 'REMINDER_FREQUENCY': {
+      return change(request)
+    }
+    default: {
+      return defaultMessage(request)
+    }
   }
-
-  return defaultMessage(request)
 })
 
 agenda.on('error', err => log.error(err))
