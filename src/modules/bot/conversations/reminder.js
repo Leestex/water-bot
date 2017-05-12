@@ -59,6 +59,10 @@ export async function remind (user) {
   })
 }
 
+export async function report (user) {
+  // Report placeholder
+}
+
 export function requestSummary (user) {
   return bot.sendMessage(user.fbid, {
     text: tpl.HOW_MANY_GLASSES_TODAY({ user }),

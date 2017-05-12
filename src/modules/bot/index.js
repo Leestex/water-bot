@@ -50,6 +50,8 @@ bot.on('postback', async (payload, reply) => {
 agenda.on('error', err => log.error(err))
 agenda.on('ready', () => {
   agenda.every('1 hour', 'notify')
+  agenda.every('1 hour', 'requestSummary')
+  agenda.every('1 week', 'report')
 
   agenda.start()
 })
