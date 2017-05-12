@@ -30,6 +30,9 @@ export async function quickReply (req) {
       return frequency.request(req)
     }
     case 'FREQUENCY': {
+      if (req.data === '0') {
+        return frequency.set(req)
+      }
       await frequency.set(req)
       return reminder.initialRequest(req)
     }
