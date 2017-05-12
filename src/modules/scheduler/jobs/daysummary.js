@@ -9,7 +9,7 @@ export default async function notify (job, done) {
     const utcHours = moment().utc().hours()
     const timezone = 20 - utcHours
 
-    const users = await User.find({ timezone })
+    const users = await User.find({ 'settings.water.frequency': { $ne: 0 }, timezone })
 
     if (!users.length) {
       return done()
