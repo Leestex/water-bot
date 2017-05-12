@@ -29,3 +29,12 @@ export const AMOUNT_1_2 = '1-2 cups'
 export const AMOUNT_3_5 = '3-5 cups'
 export const AMOUNT_6 = '6 and more'
 export const AMOUNT_NA = 'I don\'t count'
+
+export const LETS_TRY = 'Let\'s give it a try now, drink 1 cup of water and press the button'
+export const DONE = 'Done'
+
+export const WATER_TIME = 'Water time! 🙂'
+export const WATER_TIME_MORNING = 'Good morning champ! Time for your morning drink'
+
+export const HOW_MANY_GLASSES_TODAY = tpl('So how many glasses of water have you drank today <%- user.name %>?')
+export const PROGRESS_SAVED = 'Thanks! 🙂 progress saved'
