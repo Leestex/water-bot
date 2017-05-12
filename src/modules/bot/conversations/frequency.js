@@ -27,13 +27,13 @@ export function request (req) {
   if (req.data === '6') {
     return req.reply({
       text: tpl.SET_DAYLY_REMINDER,
-      quick_replies: quickReplies.slice(-2),
+      quick_replies: quickReplies.slice(2, 3),
     })
   }
 
   return req.reply({
     text: tpl.CHOOSE_FREQUENCY,
-    quick_replies: quickReplies.slice(-1),
+    quick_replies: quickReplies.slice(0, 3),
   })
 }
 

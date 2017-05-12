@@ -31,7 +31,7 @@ export async function quickReply (req) {
     }
     case 'FREQUENCY': {
       await frequency.set(req)
-      return req.reply({ text: tpl.LETS_TRY })
+      return reminder.initialRequest(req)
     }
     case 'DRANK': {
       return reminder.accepted(req)
