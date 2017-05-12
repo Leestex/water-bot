@@ -1,0 +1,24 @@
+import moment from 'moment'
+
+import { User } from '../../user'
+import { requestSummary } from '../../bot/conversations/reminder'
+import log from '../../logger'
+
+export default async function notify (job, done) {
+  try {
+    const utcHours = moment().utc().hours()
+    const timezone = 20 - utcHours
+
+    const users = await User.find({ timezone })
+
+    if (!users.length) {
+      return done()
+    }
+
+    await Promise.all(users.map(requestSummary))
+  } catch (err) {
+    log.error(err)
+  }
+
+  return done()
+}

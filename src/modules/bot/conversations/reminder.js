@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 import * as tpl from '../messages'
 import { Image } from '../../image'
 import bot from '../index'
@@ -57,14 +59,17 @@ export async function remind (user) {
   })
 }
 
-export function requestSummary (req) {
-  return req.reply({
-    text: tpl.HOW_MANY_GLASSES_TODAY({ user: req.user }),
+export function requestSummary (user) {
+  return bot.sendMessage(user.fbid, {
+    text: tpl.HOW_MANY_GLASSES_TODAY({ user }),
     quick_replies: summaryQuickReplies,
   })
 }
 
 export function setSummary (req) {
+  req.user.records.push({ day: moment().utc().format('YYYY-MM-DD'), amount: Number(req.data) })
+  req.user.save()
+
   return req.reply({
     text: tpl.PROGRESS_SAVED,
   })

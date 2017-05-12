@@ -1,6 +1,7 @@
 import * as tpl from '../messages'
 import * as amount from './amount'
 import * as frequency from './frequency'
+import * as reminder from './reminder'
 
 import log from '../../logger'
 
@@ -29,7 +30,14 @@ export async function quickReply (req) {
       return frequency.request(req)
     }
     case 'FREQUENCY': {
-      return frequency.set(req)
+      await frequency.set(req)
+      return req.reply({ text: tpl.LETS_TRY })
+    }
+    case 'DRANK': {
+      return reminder.accepted(req)
+    }
+    case 'TODAY': {
+      return reminder.setSummary(req)
     }
     default: {
       log.warn(`Unknown query: ${req.query}`)

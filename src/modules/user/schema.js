@@ -21,4 +21,8 @@ export default Schema({
       frequency: Number,
     },
   },
+  records: [{
+    day: String,
+    amount: Number,
+  }],
 })
