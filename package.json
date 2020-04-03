@@ -38,7 +38,7 @@
     "config": "^1.26.1",
     "express": "^4.15.2",
     "helmet": "^3.6.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.13",
     "messenger-bot": "git+https://github.com/remixz/messenger-bot.git",
     "moment": "^2.18.1",
     "mongoose": "^4.9.8",
